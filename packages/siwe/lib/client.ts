@@ -411,10 +411,12 @@ export class SiweMessage {
     }
 
     /** `issuedAt` conforms to ISO-8601 and is a valid date. */
-    if (!isValidISO8601Date(this.issuedAt)) {
-      throw new Error(SiweErrorType.INVALID_TIME_FORMAT);
+    if (this.issuedAt){
+      if (!isValidISO8601Date(this.issuedAt)) {
+        throw new Error(SiweErrorType.INVALID_TIME_FORMAT);
+      }
     }
-
+    
     /** `expirationTime` conforms to ISO-8601 and is a valid date. */
     if (this.expirationTime) {
       if (!isValidISO8601Date(this.expirationTime)) {
